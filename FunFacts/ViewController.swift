@@ -9,13 +9,15 @@
 import UIKit
 
 class ViewController: UIViewController {
-    let facts = ["Ants stretch when they wake up in the morning,", "Ostritches run faster than horses"]
+    let factProvider = FactProvider()
+    let colourProvider = BackgroundColourProvider()
     
+    @IBOutlet weak var funFactButton: UIButton!
     @IBOutlet weak var FunFactLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        FunFactLabel.text = facts[0]
+        FunFactLabel.text = factProvider.randomFact()
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,8 +26,9 @@ class ViewController: UIViewController {
     }
 
     @IBAction func showFact() {
-        FunFactLabel.text = facts[1]
+        FunFactLabel.text = factProvider.randomFact()
+        let randomColour = colourProvider.randomColour()
+        view.backgroundColor = randomColour
+        funFactButton.backgroundColor = randomColour
     }
-    
 }
-
